@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gabai/pages/chat_page.dart';
 import 'package:gabai/pages/home_page.dart';
-import 'package:gabai/pages/user_page.dart';
+import 'package:gabai/pages/account_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Gabai Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
           useMaterial3: true,
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
@@ -38,22 +38,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int CurrentIndex = 0;
+  int currentIndex = 0;
 
   final List pages = [const HomePage(), const ChatPage(), const UserPage()];
 
   void onTap(int index) {
     setState(() {
-      CurrentIndex = index;
+      currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: pages[0],
+        body: pages[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           onTap: onTap,
-          currentIndex: CurrentIndex,
+          currentIndex: currentIndex,
           elevation: 0,
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey.withOpacity(0.5),
