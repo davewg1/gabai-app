@@ -21,6 +21,8 @@ class _ChatPageState extends State<ChatPage> {
     });
 
     _controller.clear();
+
+    // Insert chatbot response here
   }
 
   // Bottom Row
@@ -68,7 +70,7 @@ class _ChatPageState extends State<ChatPage> {
             Flexible(
                 child: ListView.builder(
                     reverse: true,
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     itemCount: _messages.length,
                     itemBuilder: (context, index) {
                       return _messages[index];

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 class UserPage extends StatelessWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class UserPage extends StatelessWidget {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Name",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -32,7 +31,7 @@ class UserPage extends StatelessWidget {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Address",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
@@ -47,7 +46,7 @@ class UserPage extends StatelessWidget {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Birth Date",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
@@ -82,7 +81,7 @@ class UserPage extends StatelessWidget {
             child: Padding(padding:const EdgeInsets.all(36.0),
                 child: Form(
                     child: Column(
-                      children: <Widget>[Text("Name"),name,Text("Address"),address,Text("Birth"),birthdate],
+                      children: <Widget>[const Text("Name"),name,const Text("Address"),address,const Text("Birth"),birthdate],
                     )
                 )
             )
