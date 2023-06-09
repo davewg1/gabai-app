@@ -7,13 +7,13 @@ class ChatMessage extends StatelessWidget {
   final String sender;
 
   Color chatColor() {
-    if (sender == "user") {
+    if (sender == "Mobile User") {
       return Color(0xFF4B92D3);
-    } else if (sender == "auto") {
+    } else if (sender == "Auto Mode") {
       return Color(0xFFBB6BD9);
     } else if (sender == "chatgpt") {
       return Color(0xFFEEA63A);
-    } else if (sender == "real-time") {
+    } else if (sender == "Employee") {
       return Color(0xFF4DCFC0);
     } else {
       return Colors.black;
@@ -25,8 +25,8 @@ class ChatMessage extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
           bottom: 8,
-          left: sender == "user" ? 170 : 0,
-          right: sender == "user" ? 0 : 170),
+          left: sender == "Mobile User" ? 170 : 0,
+          right: sender == "Mobile User" ? 0 : 170),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

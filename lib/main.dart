@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gabai/pages/account_page.dart';
 import 'package:gabai/pages/chat_page.dart';
 import 'package:gabai/pages/home_page.dart';
-import 'package:gabai/pages/account_page.dart';
 
 void main() {
   runApp(const MyApp());

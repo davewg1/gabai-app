@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:gabai/app/chat_message.dart';
+import 'package:http/http.dart' as http;
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -12,17 +15,46 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final TextEditingController _controller = TextEditingController();
   final List<ChatMessage> _messages = [];
+  final String _api = "http://192.168.1.3:8000/api";
 
-  void _sendMessage() {
-    ChatMessage message = ChatMessage(text: _controller.text, sender: 'user');
-
-    setState(() {
-      _messages.insert(0, message);
+  @override
+  void initState() {
+    super.initState();
+    _sendMessage(justUpdate: true);
+    Timer.periodic(const Duration(seconds: 5), (timer) {
+      _sendMessage(justUpdate: true);
     });
+  }
 
-    _controller.clear();
+  void _sendMessage({bool justUpdate = false}) {
+    if (_controller.text.isEmpty && justUpdate != justUpdate) return;
 
-    // Insert chatbot response here
+    // Insert chat bot response here
+    Future<http.Response> response;
+    if (justUpdate) {
+      response = http.post(Uri.parse("$_api/chat"));
+    } else {
+      var newMessage = {"author": 'Mobile User', "content": _controller.text};
+      var headers = <String, String>{'Content-Type': 'application/json'};
+      var body = jsonEncode(newMessage);
+      response =
+          http.post(Uri.parse("$_api/chat"), headers: headers, body: body);
+      _controller.clear();
+    }
+
+    response.then((value) {
+      List messages = jsonDecode(value.body);
+      var newMessages = messages.map((message) {
+        String sender = message["author"];
+        String text = message["content"];
+        return ChatMessage(text: text, sender: sender);
+      });
+      newMessages = newMessages.toList().reversed;
+      setState(() {
+        _messages.clear();
+        _messages.addAll(newMessages);
+      });
+    });
   }
 
   // Bottom Row
